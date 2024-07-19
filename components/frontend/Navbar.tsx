@@ -1,4 +1,5 @@
 import { useAppSelector } from "@/redux/hooks";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction } from "react";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
@@ -29,14 +30,14 @@ const Navbar = ({ setShowCart }: PropsType) => {
 
           <div className="flex gap-4 md:gap-8 items-center">
             <div className="md:flex hidden gap-3">
-              <div className="rounded-full border-2 border-gray-300 text-gray-500 text-[32px] w-[50px] h-[50px] grid place-items-center">
-                <AiOutlineUser />
-              </div>
-
-              <div>
-                <p className="text-gray-500">Hello, Sign in</p>
-                <p className="font-medium">Your Account</p>
-              </div>
+              <SignedOut>
+                <div className="text-white text-lg border-2 border-transparent rounded-2xl bg-accent hover:bg-[#5184b4] flex justify-center items-center px-4 py-2">
+                  <SignInButton />
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
             </div>
 
             <div

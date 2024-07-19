@@ -4,6 +4,7 @@ import "./globals.css";
 import AuthProvider from "@/components/admin_panel/AuthProvider";
 import App from "./App";
 import { Toaster } from "react-hot-toast";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,14 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
-          <App>{children}</App>
-        </AuthProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <AuthProvider>
+            <App>{children}</App>
+          </AuthProvider>
 
-        <Toaster position="bottom-center" reverseOrder={false} />
-      </body>
-    </html>
+          <Toaster position="bottom-center" reverseOrder={false} />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
